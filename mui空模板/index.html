@@ -6,14 +6,16 @@
     <title></title>
     <script src="js/mui.min.js"></script>
     <link href="css/mui.min.css" rel="stylesheet"/>
+	 <link href="css/base.css" rel="stylesheet"/>
     <script type="text/javascript" charset="utf-8">
       	mui.init();
     </script>
-	<style>
-		html,body{ height: 100%; background: red;}
-	</style>
+	<script>
+		var w = window.screen.width;
+		var html = document.getElementsByTagName("html")
+		html[0].style.fontSize = w / 37.5 + "px";
+	</script>
 
-	
 	
 </head>
 <body>
