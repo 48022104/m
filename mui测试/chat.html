@@ -8,174 +8,297 @@
 		<link href="css/mui.min.css" rel="stylesheet" />
 		<link href="css/base.css" rel="stylesheet" />
 		<link href="css/chat.css" rel="stylesheet" />
-		
+
 		<script>
 			var w = window.screen.width;
 			var html = document.getElementsByTagName("html")
 			html[0].style.fontSize = w / 37.5 + "px";
-			
-			
-			
 		</script>
-		
-		
-		
+
+
+
 	</head>
 	<body>
-		
+
 		<header>
 			<div class="header_chat">
-				<img src="images/back.svg"/>对方昵称
+				<img src="images/back.svg" />对方昵称
 			</div>
 		</header>
-		
+
 		<div class="ye_main ye_main_chat" id="ym">
 			<div class="top_tips" id="tt">下拉刷新</div>
-			<div class="ye_main_in"id="ymi">
-				
+			<div class="ye_main_in" id="ymi">
+
 				<div class="chat_left">
-					<div class="photo"><img src="images/people.jpg"/></div>
+					<div class="photo"><img src="images/people.jpg" /></div>
 					<div class="txt">你好啊！</div>
 					<div class="clear"></div>
 				</div>
-				
+
 				<div class="chat_left">
-					<div class="photo"><img src="images/people.jpg"/></div>
+					<div class="photo"><img src="images/people.jpg" /></div>
 					<div class="txt">90年代寻宝电影热潮袭来，香港影视界人士都跃跃欲试，但是能做到像《飞鹰计划》这般用心的个人觉得几乎没有。</div>
 					<div class="clear"></div>
 				</div>
-				
+
 				<div class="chat_left">
-					<div class="photo"><img src="images/people.jpg"/></div>
-					<div class="pic"><img src="images/people.jpg"/></div>
+					<div class="photo"><img src="images/people.jpg" /></div>
+					<div class="pic"><img src="images/people.jpg" /></div>
 					<div class="clear"></div>
 				</div>
-				
+
 				<div class="chat_left">
-					<div class="photo"><img src="images/people.jpg"/></div>
-					<div class="pic"><img src="images/long.jpg"/></div>
+					<div class="photo"><img src="images/people.jpg" /></div>
+					<div class="pic"><img src="images/long.jpg" /></div>
 					<div class="clear"></div>
 				</div>
-				
-				
-				
-				
+
+
+
+
 				<div class="chat_right">
-					<div class="photo"><img src="images/people.jpg"/></div>
+					<div class="photo"><img src="images/people.jpg" /></div>
 					<div class="txt">你好啊！</div>
 					<div class="clear"></div>
 				</div>
-				
+
 				<div class="chat_right">
-					<div class="photo"><img src="images/people.jpg"/></div>
+					<div class="photo"><img src="images/people.jpg" /></div>
 					<div class="txt">90年代寻宝电影热潮袭来，香港影视界人士都跃跃欲试，但是能做到像《飞鹰计划》这般用心的个人觉得几乎没有。</div>
 					<div class="clear"></div>
 				</div>
-				
+
+				<!-- <div class="time" value="1602432000000"></div> -->
+
+
 				<div class="chat_right">
-					<div class="photo"><img src="images/people.jpg"/></div>
+					<div class="photo"><img src="images/people.jpg" /></div>
 					<div class="pic">
 						<div class="load"><img src="images/load.svg" /></div>
-						<img src="images/people.jpg"/>
+						<img src="images/people.jpg" />
 					</div>
 					<div class="clear"></div>
 				</div>
-				
-				
-				
-				
-				
-				
-				
+
+				<div class="time" value="1539571811000"></div><!-- 2018-10-15 10:50:11 -->
+				<div class="time" value="1600138211000"></div><!-- 2020-9-15 10:50:11 -->
+				<div class="time" value="1602643811000"></div><!-- 2020-10-14 10:50:11 -->
+				<div class="time" value="1602730211000"></div><!-- 2020-10-15 10:50:11 -->
+
+
+
+
+
+
+
 			</div>
 			<!-- <div class="bottom_tips"id="bt">上拉加载</div>	 -->
 		</div>
-	
+
 		<div class="bottom_chat">
-			<div class="icon"><img src="images/emoji.svg"/></div>
-			<div class="text" contenteditable="true"></div>
-			<div class="icon"><img src="images/camera.svg"/></div>
+			<div class="icon" ><img src="images/emoji.svg" /></div>
+			<div class="text" contenteditable="true" id="t"></div>
+			<div class="icon" id="p"><img src="images/camera.svg" /></div>
+			<div class="icon" id="f" onclick="fabu()" style="display: none;"><img src="images/fabu.svg" /></div>
 		</div>
-	
-	
+
+
 	</body>
-	
+
 	<script>
+		function timechange() {
+			var ts = document.getElementsByClassName("time")
+			for (var i = 0; i < ts.length; i++) {
+				var timestamp = ts[i].getAttribute("value"); //获取value值
+				timestamp = parseInt(timestamp);
+				console.log(timestamp)
+				var date = new Date(timestamp); //时间戳为10位需*1000，时间戳为13位的话不需乘1000
+				var yy = date.getFullYear();
+				var mm = date.getMonth() + 1;
+				var dd = date.getDate();
+				var hhh = date.getHours();
+				var mmm = date.getMinutes();
+				var sss = date.getSeconds();
+				var date_now = new Date();
+				var yyn = date_now.getFullYear();
+				var mmn = date_now.getMonth() + 1;
+				var ddn = date_now.getDate();
+				var hhhn = date_now.getHours();
+				var mmmn = date_now.getMinutes();
+				var sssn = date_now.getSeconds();
+				console.log(yy + "/" + mm + "/" + dd + "-" + hhh + "：" + mmm + "：" + sss)
+				console.log(yyn + "/" + mmn + "/" + ddn + "-" + hhhn + "：" + mmmn + "：" + sssn)
+				var syy, smm, sdd, shhh, smmm;
+				if (yy == yyn && mm == mmn && dd != ddn) {
+					syy = "" //年不显示
+					smm = mm + "-"; //月显示
+					sdd = dd + "&nbsp&nbsp"; //天显示
+					shhh = hhh + ": ";
+					smmm = mmm;
+				} //同年同月不同天
+				if (yy == yyn && mm != mmn) {
+					syy = "" //年不显示
+					smm = mm + "-"; //月显示
+					sdd = dd + "&nbsp&nbsp"; //天显示
+					shhh = hhh + ": ";
+					smmm = mmm;
+				} //同年不同月
+				if (yy != yyn) {
+					syy = yy + "-" //年显示
+					smm = mm + "-"; //月显示
+					sdd = dd + "&nbsp&nbsp"; //天显示
+					shhh = hhh + ": ";
+					smmm = mmm;
+				} //同年不同月
+				if (yy == yyn && mm == mmn && dd == ddn) {
+					smm = "";
+					sdd = "";
+					shhh = hhh + ": ";
+					smmm = mmm;
+				} //同一天
+				
+				if(i>0){
+				   var tb = parseInt(ts[i].getAttribute("value"));
+				   var ta = parseInt(ts[i-1].getAttribute("value"));
+				   console.log(tb +"---" + ta)
+				   if((tb-ta)<180000){
+					   syy = "";
+					   smm = "";
+					   sdd = "";
+					   shhh = "";
+					   smmm = "";
+				   }
+				   
+				}
+				ts[i].innerHTML = syy + "" + smm + "" + sdd + "" + shhh + "" + smmm
+				console.log("now:" + date_now)
+			}
+		}
+		timechange();
+		var txt = document.getElementById('t');
+		var pic = document.getElementById('p');
+		var fb = document.getElementById('f');
+		txt.addEventListener("keydown", chat);
+		txt.addEventListener("blur", clear);
+		function chat() {
+			pic.style.display = "none";
+			fb.style.display = "block";
+			setTimeout(
+				function() {
+					var w = txt.innerHTML;
+					if (w == "") {
+						pic.style.display = "block";
+						fb.style.display = "none";
+					}
+				}, 200
+			);
+			console.log("打字");
+		}
+
+		function clear() {
+			if (txt.innerHTML == "") {
+				pic.style.display = "block";
+				fb.style.display = "none";
+			}
+		}
+
+
+		txt.onfocus = function() {
+			setTimeout(
+				function() {
+					console.log("到底" + ym.scrollHeight);
+					ym.scrollTop = ym.scrollHeight;
+				}, 100
+			);
+		}
+		
+		function showtime() {
+			var time_fabu = new Date();
+			var timevalue = Date.parse(time_fabu);
+			console.log(timevalue)
+			console.log(time_fabu);
+			ymi.innerHTML += "<div class='time' value=' " + timevalue + "'></div>";
+			timechange();
+		}
+		
+		function fabu() {
+			showtime();
+			txt.focus();
+			pic.style.display = "block";
+			fb.style.display = "none";
+			var w = txt.innerHTML;
+			txt.innerHTML = "";
+			console.log("发布");
+			ymi.innerHTML += "<div class='chat_right'><div class='photo'><img src='images/people.jpg'/></div>" +
+				"<div class='txt'>" + w + "</div>" +
+				" <div class='clear'></div></div>"
+			setTimeout(
+				function() {
+					console.log("到底" + ym.scrollHeight);
+					ym.scrollTop = ym.scrollHeight;
+				}, 100
+			);
+		}
+
+		//下拉上拉部分
 		var ym = document.getElementById('ym'),
 			ymi = document.getElementById('ymi'),
 			tt = document.getElementById('tt');
-			// bt = document.getElementById('bt');
-			var ymih;
-			var ymh;
-			var y1;//第一次触碰
-			var y2;//滑动后的位置
-			var tt_n;
-			// var bt_n;
-			
-			
-			
+		// bt = document.getElementById('bt');
+		var ymih;
+		var ymh;
+		var y1; //第一次触碰
+		var y2; //滑动后的位置
+		var tt_n;
+
+		ymh = ym.clientHeight;
+		ymih = ymi.clientHeight;
+		ym.scrollTop = ymih - ymh + 30;
+		ym.addEventListener("touchstart", thS);
+
+		function thS(e) {
+			y1 = e.touches[0].pageY;
 			ymh = ym.clientHeight;
 			ymih = ymi.clientHeight;
-			ym.scrollTop = ymih-ymh + 30;
-			
-			ym.addEventListener("touchstart", thS);
-			function thS(e) {
-				y1 = e.touches[0].pageY;
-				ymh = ym.clientHeight;
-				ymih = ymi.clientHeight;
-				tt.style.transition = "0s"
-				// bt.style.transition = "0s"
-				ymi.style.transition = "0s";
-			}
-			
-			ym.addEventListener("touchmove", thM);
-			function thM(e) {
-				//控制内容滚动
-				
-				tt.innerHTML = "下拉刷新";
-				// bt.innerHTML = "上拉加载";
-				y2 = e.touches[0].pageY ;
-				if(ym.scrollTop<=0){
-					tt.style.height = (y2-y1) + "px"
-					if((y2-y1) >150){
-						tt_n = 150
-						tt.innerHTML = "释放刷新"
-					}else{
-						tt_n = y2-y1
-					}
-					tt.style.height = tt_n + "px"
-				}
-				
-				
-					// if(ym.scrollTop >= (ymih-ymh-5) & ymih > ymh ) {
-					// 	 //这里的减1 是为了精度
-					// 	if((y1-y2) >150){
-					// 		bt_n = 150
-					// 		bt.innerHTML = "释放加载"
-					// 	}else{
-					// 		bt_n = y1-y2
-					// 	}
-					// 	bt.style.height = bt_n + "px"
-					// }
-			}
-			
+			tt.style.transition = "0s"
+			// bt.style.transition = "0s"
+			ymi.style.transition = "0s";
+		}
 
-			ym.addEventListener("touchend", thE);
-			function thE(e) {
-				tt.style.transition = "0.5s"
-				// bt.style.transition = "0.5s"
-				tt.style.height = "0px";
-				// bt.style.height = "0px";
-				var tth = tt.clientHeight;
-				// var bth = bt.clientHeight;
-				
-				if(tth>140){
-					alert("加载")
-				};
-				// if(bth>140){
-				// 	alert("加载")
-				// }
+		ym.addEventListener("touchmove", thM);
+
+		function thM(e) {
+			//控制内容滚动
+
+			tt.innerHTML = "下拉刷新";
+			// bt.innerHTML = "上拉加载";
+			y2 = e.touches[0].pageY;
+			if (ym.scrollTop <= 0) {
+				tt.style.height = (y2 - y1) + "px"
+				if ((y2 - y1) > 150) {
+					tt_n = 150
+					tt.innerHTML = "释放刷新"
+				} else {
+					tt_n = y2 - y1
+				}
+				tt.style.height = tt_n + "px"
 			}
-			
+		}
+
+
+		ym.addEventListener("touchend", thE);
+
+		function thE(e) {
+			tt.style.transition = "0.5s"
+			tt.style.height = "0px";
+			var tth = tt.clientHeight;
+
+
+			if (tth > 140) {
+				alert("加载")
+			};
+
+		}
 	</script>
 </html>

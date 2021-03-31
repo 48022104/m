@@ -16,101 +16,154 @@
 			html[0].style.fontSize = w / 37.5 + "px";
 		</script>
 		<style>
-			* {margin: 0;padding: 0;}
-			html,body {height: 100%;}
-			.ye_main {position: fixed;top:0;bottom:0;left: 0;right: 0;background: red;overflow: auto;}
-			.things {height: 20rem;}
-			.ye_main_in{margin-top: 0px; position: relative; background: darkred;}
-			.top_tips{ background: red; justify-content: center; align-items: center; display: flex; width: 100%; height: 0; overflow: hidden;}
-			.bottom_tips{ background: red; justify-content: center; align-items: center; display: flex; width: 100%; height: 0; overflow: hidden;}
+			* {
+				margin: 0;
+				padding: 0;
+			}
+
+			html,
+			body {
+				min-height: 100%;
+			}
+
+			.ye_main {
+				position: fixed;
+				top: 0;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				background: red;
+				overflow: auto;
+			}
+
+			.things {
+				height: 20rem;
+			}
+
+			.ye_main::-webkit-scrollbar {
+				display: none
+			}
+
+			.ye_main_in {
+				margin-top: 0px;
+				position: relative;
+				background: darkred;
+			}
+
+			.ye_main_in::-webkit-scrollbar {
+				display: none
+			}
+
+			.top_tips {
+				background: red;
+				justify-content: center;
+				align-items: center;
+				display: flex;
+				width: 100%;
+				height: 0;
+				overflow: hidden;
+			}
+
+			.bottom_tips {
+				background: red;
+				justify-content: center;
+				align-items: center;
+				display: flex;
+				width: 100%;
+				height: 0;
+				overflow: hidden;
+			}
 		</style>
 	</head>
 	<body>
 		<div class="ye_main" id="ym">
 			<div class="top_tips" id="tt">下拉刷新</div>
-			<div class="ye_main_in"id="ymi">
+			<div class="ye_main_in" id="ymi">
 				<div class="things">1</div>
 				<div class="things">2</div>
 				<div class="things">3</div>
 				<div class="things">4</div>
 				<div class="things">5</div>
 				<div class="things">6</div>
-				<div class="things">7</div>	
+				<div class="things"><input type="text"/></div>
 			</div>
-			<div class="bottom_tips"id="bt">上拉加载</div>	
+			<div class="bottom_tips" id="bt">上拉加载</div>
 		</div>
 	</body>
-	
+
 	<script>
 		var ym = document.getElementById('ym'),
 			ymi = document.getElementById('ymi'),
 			tt = document.getElementById('tt'),
 			bt = document.getElementById('bt');
-			var ymih;
-			var ymh;
-			var y1;//第一次触碰
-			var y2;//滑动后的位置
-			var tt_n;
-			var bt_n;
-			
-			
-			ym.addEventListener("touchstart", thS);
-			function thS(e) {
-				y1 = e.touches[0].pageY;
-				ymh = ym.clientHeight;
-				ymih = ymi.clientHeight;
-				tt.style.transition = "0s"
-				bt.style.transition = "0s"
-				ymi.style.transition = "0s";
-			}
-			
-			ym.addEventListener("touchmove", thM);
-			function thM(e) {
-				//控制内容滚动
-				
-				tt.innerHTML = "下拉刷新";
-				bt.innerHTML = "上拉加载";
-				y2 = e.touches[0].pageY ;
-				if(ym.scrollTop<=0){
-					tt.style.height = (y2-y1) + "px"
-					if((y2-y1) >150){
-						tt_n = 150
-						tt.innerHTML = "释放刷新"
-					}else{
-						tt_n = y2-y1
-					}
-					tt.style.height = tt_n + "px"
-				}
-				
-				
-					if(ym.scrollTop >= (ymih-ymh-1) & ymih > ymh ) {
-						 //这里的减1 是为了精度
-						if((y1-y2) >150){
-							bt_n = 150
-							bt.innerHTML = "释放加载"
-						}else{
-							bt_n = y1-y2
-						}
-						bt.style.height = bt_n + "px"
-					}
-			}
-			
+		var ymih;
+		var ymh;
+		var y1; //第一次触碰
+		var y2; //滑动后的位置
+		var tt_n;
+		var bt_n;
 
-			ym.addEventListener("touchend", thE);
-			function thE(e) {
-				tt.style.transition = "0.5s"
-				bt.style.transition = "0.5s"
-				tt.style.height = "0px";
-				bt.style.height = "0px";
-				var tth = tt.clientHeight;
-				var bth = bt.clientHeight;
-				
-				if(tth>140){
-					alert("刷新")
-				};
-				if(bth>140){
-					alert("加载")
+
+		ym.addEventListener("touchstart", thS);
+
+		function thS(e) {
+			y1 = e.touches[0].pageY;
+			ymh = ym.clientHeight;
+			ymih = ymi.clientHeight;
+			tt.style.transition = "0s"
+			bt.style.transition = "0s"
+			ymi.style.transition = "0s";
+		}
+
+		ym.addEventListener("touchmove", thM);
+
+		function thM(e) {
+			//控制内容滚动
+
+			tt.innerHTML = "下拉刷新";
+			bt.innerHTML = "上拉加载";
+			y2 = e.touches[0].pageY;
+			if (ym.scrollTop <= 0) {
+				tt.style.height = (y2 - y1) + "px"
+				if ((y2 - y1) > 150) {
+					tt_n = 150
+					tt.innerHTML = "释放刷新"
+				} else {
+					tt_n = y2 - y1
 				}
+				tt.style.height = tt_n + "px"
 			}
+
+
+			if (ym.scrollTop >= (ymih - ymh - 1) & ymih > ymh) {
+				//这里的减1 是为了精度
+				if ((y1 - y2) > 150) {
+					bt_n = 150
+					bt.innerHTML = "释放加载"
+				} else {
+					bt_n = y1 - y2
+				}
+				bt.style.height = bt_n + "px"
+			}
+		}
+
+
+		ym.addEventListener("touchend", thE);
+
+		function thE(e) {
+			tt.style.transition = "0.5s"
+			bt.style.transition = "0.5s"
+			tt.style.height = "0px";
+			bt.style.height = "0px";
+			var tth = tt.clientHeight;
+			var bth = bt.clientHeight;
+
+			if (tth > 140) {
+				alert("刷新")
+			};
+			if (bth > 140) {
+				alert("加载")
+			}
+		}
 	</script>
 </html>
